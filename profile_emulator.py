@@ -18,7 +18,6 @@ erg_to_keV = 6.242e+8
 Zsun = 0.0127
 Msun = 1.989e33 #g cm^-3
 
-
 def emulated_profile_LH(emulator, *plist):
 
     profile = emulator([list(plist)]).ravel()
@@ -32,15 +31,20 @@ def load_profile_emulator(radius_file, emulator_file) :
 
     return radius, emulator
 
-def Mgas_M200c_scaling(suite, z, M200c, *params, ssfr_str='all_ssfr', emulator_dir='emulator_files/'):
+def Mgas_M200c_scaling(suite, z, M200c, *params,
+                       OmegaM=OmegaM, sigma8=sigma8,
+                       ssfr_str='all_ssfr', emulator_dir='emulator_files/'):
 
-    mgas = [ Mgas_M200c_scalar(suite, z, m, *params, ssfr_str=ssfr_str, emulator_dir=emulator_dir) 
+    mgas = [ Mgas_M200c_scalar(suite, z, m, *params, 
+                               OmegaM=OmegaM, sigma8=sigma8,
+                               ssfr_str=ssfr_str, emulator_dir=emulator_dir) 
              for m in M200c  ]
 
     return np.array(mgas)
 
-def Mgas_M200c_scalar(suite, z, M200c, *params, ssfr_str='all_ssfr', emulator_dir='emulator_files/'):
-
+def Mgas_M200c_scalar(suite, z, M200c, *params, 
+                      OmegaM=OmegaM, sigma8=sigma8,
+                      ssfr_str='all_ssfr', emulator_dir='emulator_files/'):
     
     emulator_file = emulator_dir+'/'+suite+"_LH_hot_density_M200c_"+ssfr_str+"_emulator.dill"
     radius_file   = emulator_dir+'/'+suite+"_LH_hot_density_M200c_"+ssfr_str+"_radius.dill"
@@ -68,6 +72,8 @@ def Mgas_M200c_scalar(suite, z, M200c, *params, ssfr_str='all_ssfr', emulator_di
     
     mgas_profile = np.cumsum(pro*differential_volume) 
 
+    cosmo = cosmology.setCosmology('myCosmo', 
+                                params = cosmology.cosmologies['planck18'], Om0 = OmegaM, sigma8=sigma8)
     R200c = mass_so.M_to_R(M200c, z, '200c') # R200c in kpc
     mgas_R200c = 10**np.interp(np.log10(R200c), np.log10(radius), np.log10(mgas_profile))
     
@@ -75,6 +81,7 @@ def Mgas_M200c_scalar(suite, z, M200c, *params, ssfr_str='all_ssfr', emulator_di
 
 
 def density_profile (suite, z, logM200c, radius, *params, 
+                     OmegaM=OmegaM, sigma8=sigma8,
                      ssfr_str='all_ssfr', emulator_dir='emulator_files/'):
     
     emulator_file = emulator_dir+'/'+suite+"_LH_hot_density_M200c_"+ssfr_str+"_emulator.dill"
@@ -89,6 +96,7 @@ def density_profile (suite, z, logM200c, radius, *params,
     return np.abs(pro)
 
 def temperature_profile (suite, z, logM200c, radius, *params, 
+                        OmegaM=OmegaM, sigma8=sigma8,
                          ssfr_str='all_ssfr', emulator_dir='emulator_files/'):
     
     emulator_file = emulator_dir+'/'+suite+"_LH_hot_temperature_M200c_"+ssfr_str+"_emulator.dill"
