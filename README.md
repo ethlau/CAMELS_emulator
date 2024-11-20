@@ -8,6 +8,6 @@ The emulator is constructed using the profiles found in emulator_profiles and th
 
 ## Dependencies:
 
-numpy, scipy
+numpy, scipy, colossus
 
 ostrich - should download its own dependencies when cloning the repo
