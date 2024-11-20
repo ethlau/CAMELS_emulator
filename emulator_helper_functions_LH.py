@@ -3,8 +3,6 @@ import ostrich.emulate
 import ostrich.interpolate
 from astropy import units as u
 import matplotlib.pyplot as plt
-from matplotlib import gridspec
-from matplotlib import cm
 import warnings
 from kllr import kllr_model 
 from tqdm import tqdm
