@@ -2,7 +2,6 @@ import numpy as np
 import ostrich.emulate
 import ostrich.interpolate
 from astropy import units as u
-import matplotlib.pyplot as plt
 import warnings
 from kllr import kllr_model 
 from tqdm import tqdm
