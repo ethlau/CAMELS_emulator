@@ -1,5 +1,7 @@
 # CAMELS_emulator
 
+[![DOI](https://zenodo.org/badge/352484591.svg)](https://doi.org/10.5281/zenodo.14714176)
+
 CAMELS_emulator is a repository creating an emulator for the CAMELS profiles, based on https://github.com/ethlau/emu_CAMELS
 
 A different emulator is created for LH set fpr each simulation suite (SIMBA/IllustrisTNG/Astrid), feedback parameters (ASN1/2, AAGN1/2) and profiles (density and temperature).
