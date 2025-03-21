@@ -1,6 +1,6 @@
 # CAMELS emulator
 
-[![DOI](https://zenodo.org/badge/352484591.svg)](https://doi.org/10.5281/zenodo.14714176)
+[![DOI](https://zenodo.org/badge/352484591.svg)](https://doi.org/10.5281/zenodo.14714176) [![License](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 CAMELS_emulator is a repository creating an emulator for the CAMELS profiles, based on https://github.com/ethlau/emu_CAMELS
 
