@@ -1,4 +1,4 @@
-# CAMELS_emulator
+# CAMELS emulator
 
 [![DOI](https://zenodo.org/badge/352484591.svg)](https://doi.org/10.5281/zenodo.14714176)
 
@@ -17,11 +17,12 @@ CAMELS_emulator is a repository creating an emulator for the CAMELS profiles, ba
   - `Profile_emulator_M200c.ipynb`: Example ipython notebook illustrating how the emulator works
 
 ## Required Tools and Dependencies
-- **ostrich**: Custom machine learning package for emulation (with `emulate` and `interpolate` modules)
-- **colossus**: For cosmological calculations and halo mass conversions
-- **kllr**: Kernel-localized linear regression for data fitting
-- **APEC Model**: Referenced for X-ray cooling function computation
-- **astropy**: For unit conversions
+- **[ostrich](https://github.com/ethlau/ostrich)**: Custom machine learning package for emulation (with `emulate` and `interpolate` modules)
+- **[colossus](https://bdiemer.bitbucket.io/colossus/)**: For cosmological calculations and halo mass conversions
+- **[kllr](https://github.com/afarahi/kllr)**: Kernel-localized linear regression for data fitting
+- **[cgm_toolkit](https://github.com/ethlau/cgm_toolkit)**: Calculations for X-ray properties for halo gas
+- **[astropy](https://www.astropy.org/)**: For unit conversions
+- Numpy, scipy, and matplotlib
 
 ## Script and Code Functions
 - **Profile Emulation Functions**:
@@ -38,7 +39,7 @@ CAMELS_emulator is a repository creating an emulator for the CAMELS profiles, ba
   - `build_Lx_M500c_emulator()`: Creates emulators for X-ray luminosity-halo mass relations
 
 ## Relationship to Research
-This code implements the emulator framework described in "X-raying CAMELS: Constraining Baryonic Feedback in the Circum-Galactic Medium" (Lau et al., 2025). Specifically:
+This code implements the emulator framework described in "[X-raying CAMELS: Constraining Baryonic Feedback in the Circum-Galactic Medium](https://ui.adsabs.harvard.edu/abs/2024arXiv241204559L/abstract)" (Lau et al., 2025). Specifically:
 
 1. The emulator uses Principal Component Analysis (PCA) with Radial Basis Function interpolation to predict X-ray surface brightness profiles and X-ray luminosity-stellar mass relations.
 
@@ -46,6 +47,6 @@ This code implements the emulator framework described in "X-raying CAMELS: Const
 
 3. The code handles 6 key parameters that are varied in the simulations:
    - Two cosmological parameters: Ω_M and σ_8
-   - Four feedback parameters: SN1 (supernova energy), SN2 (wind speed), AGN1 (AGN energy), and AGN2 (AGN ejection speed/burstiness)
-
+   - Four SN and AGN feedback parameters implemented in the simulations. 
+  
 4. The emulator enables direct comparison between simulated X-ray properties and eROSITA All-Sky Survey observations to determine the optimal feedback parameters that reproduce observed X-ray profiles of the circumgalactic medium.
